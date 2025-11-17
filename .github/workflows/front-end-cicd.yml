@@ -1,10 +1,10 @@
 name: Upload Website to S3 and Invalidate CloudFront
 
 on:
-  workflow_dispatch: # Allows you to run this manually from the Actions tab
+  workflow_dispatch: 
   push:
     branches:
-    - main # Runs on every push to the main branch
+    - main 
 
 jobs:
   deploy:
@@ -24,14 +24,14 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: 'ap-southeast-2'
-        SOURCE_DIR: './' # Sync from the main directory
+        SOURCE_DIR: './' 
 
     # 3. Invalidate the CloudFront cache
     - name: Create CloudFront Invalidation
       uses: chetan/invalidate-cloudfront-action@v2
       env:
-        DISTRIBUTION_ID: ${{ secrets.AWS_CLOUDFONT_DISTRIBUTION_ID }}
-        PATHS: '/index.html' # THIS IS THE CRITICAL CHANGE
+        DISTRIBUTION: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }}
+        PATHS: '/index.html' 
         AWS_REGION: 'ap-southeast-2'
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
