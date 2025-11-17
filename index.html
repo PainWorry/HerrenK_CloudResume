@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herren Karsemsak - Resume</title>
+    <!-- Importing Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Importing Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom styles -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f4f5; /* A light gray background */
+        }
+        .main-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        .section-title {
+            font-size: 1.125rem; /* text-lg */
+            font-weight: 700; /* bold */
+            color: #1d4ed8; /* blue-700 */
+            border-bottom: 2px solid #dbeafe; /* blue-100 */
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .job-title {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #1f2937; /* gray-800 */
+        }
+        .job-company {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: #374151; /* gray-700 */
+        }
+        .job-date {
+            font-size: 0.875rem; /* text-sm */
+            color: #6b7280; /* gray-500 */
+            font-style: italic;
+        }
+        .job-description {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            color: #4b5563; /* gray-600 */
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        .skill-category {
+            font-weight: 600;
+            margin-top: 0.75rem;
+            color: #374151; /* gray-700 */
+        }
+        .header-bg {
+            background-color: #1d4ed8; /* blue-700 */
+        }
+        .contact-icon {
+            width: 1.25rem;
+            height: 1.25rem;
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+        }
+        
+        /* Navigation Tab Styles */
+        .nav-tab {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            font-weight: 500;
+            color: #6b7280; /* gray-500 */
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-tab:hover {
+            color: #374151; /* gray-700 */
+        }
+        .nav-tab.active {
+            color: #1d4ed8; /* blue-700 */
+            font-weight: 600;
+            border-bottom-color: #1d4ed8;
+        }
+        
+        /* Certificate Card Styles */
+        .cert-card {
+            border: 1px solid #e5e7eb; /* gray-200 */
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #ffffff;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .cert-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+        .cert-image-container {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f9fafb; /* gray-50 */
+            padding: 1rem;
+        }
+        .cert-image {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+        .cert-text-container {
+            padding: 1.25rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .cert-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #1f2937; /* gray-800 */
+        }
+        .cert-issuer {
+            font-size: 0.9rem;
+            color: #6b7280; /* gray-500 */
+            margin-top: 0.25rem;
+            flex-grow: 1;
+        }
+        .cert-link {
+            display: inline-block;
+            margin-top: 1rem;
+            font-weight: 500;
+            color: #1d4ed8; /* blue-700 */
+            text-decoration: none;
+        }
+        .cert-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <!-- Header Section -->
+        <header class="header-bg text-white p-8 text-center">
+            <h1 class="text-5xl font-bold">HERREN KARSEMSAK</h1>
+            <p class="text-2xl mt-2 font-light">Cloud & Automation Engineer</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="flex justify-center border-b border-gray-200">
+            <button id="resume-tab" class="nav-tab active">Resume</button>
+            <button id="certificates-tab" class="nav-tab">Certificates</button>
+        </nav>
+
+        <!-- Page Content -->
+        <main>
+            <!-- Resume Page -->
+            <div id="resume-page" class="grid grid-cols-1 md:grid-cols-3 gap-8 p-8">
+                <!-- Left Column -->
+                <div class="md:col-span-1">
+                    <!-- Contact Section -->
+                    <section class="mb-6">
+                        <h2 class="section-title">Contact</h2>
+                        <ul class="space-y-3 text-sm text-gray-700">
+                            <li class="flex items-center">
+                                <svg class="contact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.04 11.04 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                                <span>096-943-9892 (Pai)</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="contact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                <span>Herren_Karsemsak@outlook.com</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="contact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path></svg>
+                                <!-- UPDATED LINK -->
+                                <a href="https://www.linkedin.com/in/herren-karsemsak" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+                                    Linkedin: Herren Karsemsak
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <!-- About Me Section -->
+                    <section class="mb-6">
+                        <h2 class="section-title">About Me</h2>
+                        <p class="text-sm text-gray-700 leading-relaxed">
+                            Proactive Engineer with 2+ years of experience in automation scripting, holding an AWS Cloud Practitioner certification. Leveraging a strong foundation in Python and Java, coupled with a proven history of complex problem-solving, to drive operational efficiency and implement robust cloud solutions.
+                        </p>
+                        <p class="text-sm text-gray-700 leading-relaxed mt-2">
+                            Skilled in designing, implementing, and maintaining cloud infrastructure using Infrastructure as Code (IaC) principles, containerization, and CI/CD pipelines. Seeking to contribute expertise in optimizing cloud environments and fostering digital transformation.
+                        </p>
+                    </section>
+
+                    <!-- Skills Section -->
+                    <section class="mb-6">
+                        <h2 class="section-title">Skills</h2>
+                        <div class="text-sm text-gray-700">
+                            <p class="skill-category">Language Skills</p>
+                            <ul class="list-disc pl-5 mt-1 space-y-1">
+                                <li>Thai (Native)</li>
+                                <li>English: TOEIC 925/990</li>
+                                <li>Japanese: JLPT N4</li>
+                            </ul>
+
+                            <p class="skill-category">Technical Skills</p>
+                            <p class="mt-1"><strong>Skill:</strong> Python, Java, Shell Scripting, C, System Configuration, Infrastructure as Code (IaC), CI/CD, Problem Solving, Technical Instruction, Collaborative Teamwork, PLC Programming (Siemens, Mitsubishi, Zelio), Ladder Logic, Automation</p>
+                            <p class="mt-2"><strong>Technologies:</strong> AWS (EC2, S3, ECS/Fargate), Docker, Kubernetes, GitLab (CI/CD), Linux/Unix, Node-Red, SQL, Jetson-Nano, AutoCAD, SolidWorks</p>
+                            
+                            <p class="skill-category">Other</p>
+                            <ul class="list-disc pl-5 mt-1 space-y-1">
+                                <li>Car Driving License</li>
+                                <li>Military Exemption</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- Education Section -->
+                    <section>
+                        <h2 class="section-title">Education</h2>
+                        <div class="text-sm">
+                            <div class="mb-4">
+                                <p class="font-semibold text-gray-800">Panyapiwat Institute of Management (PIM)</p>
+                                <p class="text-gray-600">(100% scholarship)</p>
+                                <p class="text-gray-600">Bachelor of Engineering</p>
+                                <p class="text-gray-600">Robotics and Automation Engineering</p>
+                                <p class="text-gray-600">GPAX: 3.14</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-800">RATWINIT BANGKAEO SCHOOL</p>
+                                <p class="text-gray-600">Science Mathematic Intensive Program</p>
+                                <p class="text-gray-600">GPA: 3.70</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Right Column -->
+                <div class="md:col-span-2">
+                    <!-- Work Experience Section -->
+                    <section class="mb-6">
+                        <h2 class="section-title">Work Experience</h2>
+                        <div class="space-y-6">
+                            <div>
+                                <p class="job-title">Automation Engineer (Management Association)</p>
+                                <p class="job-company">Delta Electronics PCL. (Samut prakan, Thailand)</p>
+                                <p class="job-date">July 2025 - Present (4 months)</p>
+                                <ul class="job-description">
+                                    <li>Optimized production line efficiency and productivity as an Automation Engineer.</li>
+                                    <li>Performed critical machine maintenance within production lines, ensuring operational continuity and reducing downtime.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <p class="job-title">Automation Engineer & Technical Instructor</p>
+                                <p class="job-company">Prima Automation Technology Co., Ltd (Rayong, Thailand)</p>
+                                <p class="job-date">January 2024 - July 2025 (1 year 6 months)</p>
+                                <ul class="job-description">
+                                    <li>Developed an interactive PLC Training Kit to facilitate hands-on learning for students.</li>
+                                    <li>Instructed students on PLC programming methodologies and best practices for industrial automation.</li>
+                                    <li>Provided practical technical training in PLC hardware wiring, ensuring comprehensive skill development.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Internship Section -->
+                    <section class="mb-6">
+                        <h2 class="section-title">Internship</h2>
+                        <div class="space-y-6">
+                            <div>
+                                <p class="job-title">Project Specialist (Internship)</p>
+                                <p class="job-company">Technology Instrument Co., Ltd (Chonburi, Thailand)</p>
+                                <p class="job-date">June 2023 - November 2023 (6 months)</p>
+                                <ul class="job-description">
+                                    <li>Programmed and configured PLC systems for client projects, contributing to automation solutions.</li>
+                                    <li>Executed on-site PLC installation and commissioning at client locations, ensuring system integration and functionality.</li>
+                                    <li>Developed an internal online course web application using Java, SQL, Servlet API, JSP, Bootstrap, and CSS to enhance training material accessibility.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <p class="job-title">Abroad Internship</p>
+                                <p class="job-company">Taiyo Co., Ltd (Kitakyushu, Japan)</p>
+                                <p class="job-date">Nov 2022 - Feb 2023 (4 months)</p>
+                                <ul class="job-description">
+                                    <li>Programmed and debugged PLC control systems for automation machinery.</li>
+                                    <li>Designed machine parts using CAD software, contributing to automation assembly.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <p class="job-title">Machine Vision Lab Research Assistance (Internship)</p>
+                                <p class="job-company">NECTEC NSTDA (Pathum Thani, Thailand)</p>
+                                <p class="job-date">Nov 2020 - April 2021 (6 months)</p>
+                                <ul class="job-description">
+                                    <li>Developed a dashboard web application for monitoring and controlling an automatic plant monitoring robot using Node-Red flow-based programming on a Linux OS with a Jetson-Nano board.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Achievements Section -->
+                    <section class="mb-6">
+                        <h2 class="section-title">Achievements</h2>
+                        <ul class="list-disc pl-5 space-y-1 text-sm text-gray-700">
+                            <li>AWS certified cloud practitioner Certificate (2024)</li>
+                            <li>Win Silver Medal Award @i-new gen award 2021-2022</li>
+                            <li>Thai MOOC Microsoft PowerApps Certificate (2023)</li>
+                        </ul>
+                    </section>
+
+                    <!-- Projects Section -->
+                    <section>
+                        <h2 class="section-title">Project</h2>
+                        <ul class="list-disc pl-5 space-y-1 text-sm text-gray-700">
+                            <li>Static Website Hosting with CI/CD via GitHub</li>
+                            <li>Containerized Web App Deployment with ECS/Fargate</li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+
+            <!-- Certificates Page -->
+            <div id="certificates-page" class="p-8 hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <!-- Certificate 1: AWS -->
+                    <div class="cert-card">
+                        <div class="cert-image-container">
+                            <!-- UPDATED IMAGE LINK -->
+                            <img src="https://images.credly.com/size/340x340/images/00634f82-b07f-4bbd-a6bb-53de397fc3a6/image.png" alt="AWS Certified Cloud Practitioner Badge" class="cert-image">
+                        </div>
+                        <div class="cert-text-container">
+                            <h3 class="cert-title">AWS Certified Cloud Practitioner</h3>
+                            <p class="cert-issuer">Issued by Amazon Web Services</p>
+                            <a href="https://www.credly.com/badges/31e868e9-e7bb-4ce4-a8e9-e5c4f4f47298/linked_in_profile" target="_blank" rel="noopener noreferrer" class="cert-link">
+                                View Credential &rarr;
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Certificate 2: Microsoft -->
+                    <div class="cert-card">
+                        <div class="cert-image-container">
+                            <!-- UPDATED IMAGE LINK (Found correct one for Azure) -->
+                            <img src="https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-fundamentals-badge.svg" alt="Microsoft Certified Azure Fundamentals Badge" class="cert-image">
+                        </div>
+                        <div class="cert-text-container">
+                            <!-- UPDATED TEXT -->
+                            <h3 class="cert-title">Microsoft Certified: Azure Fundamentals</h3>
+                            <p class="cert-issuer">Issued by Microsoft</p>
+                            <!-- Removed credential link since the old one was for a different cert -->
+                        </div>
+                    </div>
+
+                    <!-- Certificate 3: KBTG -->
+                    <div class="cert-card">
+                        <div class="cert-image-container" style="background-color: #f0f4f8;">
+                            <div class="text-center">
+                                <!-- UPDATED TEXT -->
+                                <span class="text-2xl font-bold text-gray-700">KBTG</span>
+                                <span class="text-lg text-gray-600 block">Classnest</span>
+                            </div>
+                        </div>
+                        <div class="cert-text-container">
+                            <!-- UPDATED TEXT -->
+                            <h3 class="cert-title">KBTG Cyber Security Classnest</h3>
+                            <p class="cert-issuer">Issued by KBTG</p>
+                            <!-- UPDATED LINK (It's the same link, now pointing to this cert) -->
+                            <a href="https://drive.google.com/file/d/14EIBM_NhVV4caCgEuz6GxH4En5aiFsgH/view" target="_blank" rel="noopener noreferrer" class="cert-link">
+                                View Certificate &rarr;
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Add a 4th card here if needed -->
+                    
+                </div>
+            </div>
+        </main>
+    </div>
+
+     <!-- Footer for View Count -->
+    <footer class="text-center p-6 bg-gray-50">
+        <p class="text-sm text-gray-500">
+            Page Views: <span id="viewCount" class="font-semibold">Loading...</span>
+        </p>
+    </footer>
+
+    <!-- View Count Script -->
+    <script>
+        const functionUrl = "https://lnwpfauceehr6rwfb33nxibg4u0klpuq.lambda-url.ap-southeast-2.on.aws/";
+      
+        async function fetchViewCount() {
+          try {
+            const response = await fetch(functionUrl);
+            const data = await response.json();
+            document.getElementById("viewCount").innerText = data.views;
+          } catch (error) {
+            console.log(error)
+            console.error("Error fetching view count:", error);
+            document.getElementById("viewCount").innerText = "Error";
+          }
+        }
+        
+        // Run view count fetch but don't wait for it
+        fetchViewCount();
+    </script>
+
+    <!-- Page Navigation Script -->
+    <script>
+        // Get references to the tabs and pages
+        const resumeTab = document.getElementById('resume-tab');
+        const certificatesTab = document.getElementById('certificates-tab');
+        const resumePage = document.getElementById('resume-page');
+        const certificatesPage = document.getElementById('certificates-page');
+
+        function showResumePage() {
+            // Hide certificates, show resume
+            resumePage.classList.remove('hidden');
+            certificatesPage.classList.add('hidden');
+            
+            // Set active tab style
+            resumeTab.classList.add('active');
+            certificatesTab.classList.remove('active');
+        }
+
+        function showCertificatesPage() {
+            // Hide resume, show certificates
+            resumePage.classList.add('hidden');
+            certificatesPage.classList.remove('hidden');
+
+            // Set active tab style
+            resumeTab.classList.remove('active');
+            certificatesTab.classList.add('active');
+        }
+
+        // Add click event listeners
+        resumeTab.addEventListener('click', showResumePage);
+        certificatesTab.addEventListener('click', showCertificatesPage);
+
+        // No need for window.onload, just run
+        showResumePage(); // Show resume by default
+    </script>
+</body>
+</html>

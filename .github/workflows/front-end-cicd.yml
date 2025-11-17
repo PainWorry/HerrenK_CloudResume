@@ -1,17 +1,22 @@
-name: Upload Website to S3
+name: Upload Website to S3 and Invalidate CloudFront
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: # Allows you to run this manually from the Actions tab
   push:
     branches:
-    - main
+    - main # Runs on every push to the main branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - uses: jakejarvis/s3-sync-action@master
+    # 1. Check out your code from the repository
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # 2. Sync (upload) your files to the S3 bucket
+    - name: Sync files to S3
+      uses: jakejarvis/s3-sync-action@master
       with:
         args: --acl private --follow-symlinks --delete
       env:
@@ -19,4 +24,14 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: 'ap-southeast-2'
-        SOURCE_DIR: './'
+        SOURCE_DIR: './' # Sync from the main directory
+
+    # 3. Invalidate the CloudFront cache
+    - name: Create CloudFront Invalidation
+      uses: chetan/invalidate-cloudfront-action@v2
+      env:
+        DISTRIBUTION_ID: ${{ secrets.AWS_CLOUDFONT_DISTRIBUTION_ID }}
+        PATHS: '/index.html' # THIS IS THE CRITICAL CHANGE
+        AWS_REGION: 'ap-southeast-2'
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
