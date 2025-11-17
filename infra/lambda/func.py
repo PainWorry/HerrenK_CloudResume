@@ -2,20 +2,28 @@ import json
 import boto3
 import os
 
-# Get the DynamoDB table name from an environment variable
-TABLE_NAME = os.environ.get('TABLE_NAME', 'cloud-resume-views')
-dynamodb = boto3.resource('dynamodb')
-table = dynamodb.Table(TABLE_NAME)
-
 def lambda_handler(event, context):
+    
+    # Connection logic MUST be inside the handler.
+    table_name = os.environ.get('TABLE_NAME', 'cloud-resume-views')
+    region = os.environ.get('AWS_REGION') or os.environ.get('AWS_DEFAULT_REGION') or 'ap-southeast-2'
+    
+    dynamodb_client = boto3.resource('dynamodb', region_name=region)
+    table = dynamodb_client.Table(table_name)
+
     try:
         # Get the 'id' (partition key) to update. We'll use '0' as a static ID.
         item_id = '0'
         
-        # Update the item in DynamoDB and return the new value
+        # --- THIS IS THE FIX for the 'views' reserved keyword ---
         response = table.update_item(
             Key={'id': item_id},
-            UpdateExpression='ADD views :inc',
+            # Use #v as a placeholder for 'views'
+            UpdateExpression='ADD #v :inc',
+            ExpressionAttributeNames={
+                '#v': 'views'
+            },
+            # --- END OF FIX ---
             ExpressionAttributeValues={':inc': 1},
             ReturnValues='UPDATED_NEW'
         )
@@ -35,6 +43,8 @@ def lambda_handler(event, context):
         }
     
     except Exception as e:
+        print(f"LAMBDA HANDLER FAILED: {e}")
+        
         # Handle any errors and return a CORS-enabled error response
         return {
             'statusCode': 500,
