@@ -1,0 +1,10 @@
+Ignore Terraform files
+
+**/.terraform/
+**/.terraform.lock.hcl
+*.tfstate
+.tfstate.
+
+Ignore the zip file we build
+
+*.zip
