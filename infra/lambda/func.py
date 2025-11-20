@@ -5,6 +5,8 @@ import os
 def lambda_handler(event, context):
     
     # Connection logic MUST be inside the handler.
+    # This ensures it runs *after* test fixtures set the env vars
+    # and handles Lambda's cold start behavior correctly.
     table_name = os.environ.get('TABLE_NAME', 'cloud-resume-views')
     region = os.environ.get('AWS_REGION') or os.environ.get('AWS_DEFAULT_REGION') or 'ap-southeast-2'
     
@@ -12,30 +14,28 @@ def lambda_handler(event, context):
     table = dynamodb_client.Table(table_name)
 
     try:
-        # Get the 'id' (partition key) to update. We'll use '0' as a static ID.
         item_id = '0'
         
-        # --- THIS IS THE FIX for the 'views' reserved keyword ---
+        # We hit a bug here: 'views' is a reserved keyword in DynamoDB.
+        # The fix is to use an ExpressionAttributeName placeholder (#v).
         response = table.update_item(
             Key={'id': item_id},
             # Use #v as a placeholder for 'views'
             UpdateExpression='ADD #v :inc',
             ExpressionAttributeNames={
-                '#v': 'views'
+                '#v': 'views' 
             },
-            # --- END OF FIX ---
             ExpressionAttributeValues={':inc': 1},
             ReturnValues='UPDATED_NEW'
         )
         
-        # Get the new view count from the response
         view_count = response['Attributes']['views']
         
         # Return a successful, CORS-enabled response
         return {
             'statusCode': 200,
             'headers': {
-                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Origin': '*', # Allow our website
                 'Access-Control-Allow-Headers': 'Content-Type',
                 'Access-Control-Allow-Methods': 'GET'
             },
@@ -43,9 +43,8 @@ def lambda_handler(event, context):
         }
     
     except Exception as e:
+        # Print the real error to CloudWatch logs for debugging
         print(f"LAMBDA HANDLER FAILED: {e}")
-        
-        # Handle any errors and return a CORS-enabled error response
         return {
             'statusCode': 500,
             'headers': {

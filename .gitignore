@@ -8,3 +8,4 @@ Ignore Terraform files
 Ignore the zip file we build
 
 *.zip
+__pycache__/ *.pyc
