@@ -178,7 +178,6 @@
                             </li>
                             <li class="flex items-center">
                                 <svg class="contact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path></svg>
-                                <!-- UPDATED LINK -->
                                 <a href="https://www.linkedin.com/in/herren-karsemsak" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
                                     Linkedin: Herren Karsemsak
                                 </a>
@@ -213,7 +212,7 @@
                             <p class="mt-2"><strong>Technologies:</strong> AWS (EC2, S3, ECS/Fargate), Docker, Kubernetes, GitLab (CI/CD), Linux/Unix, Node-Red, SQL, Jetson-Nano, AutoCAD, SolidWorks</p>
                             
                             <p class="skill-category">Other</p>
-                            <ul class="list-disc pl-5 mt-1 space-y-1">
+                             <ul class="list-disc pl-5 mt-1 space-y-1">
                                 <li>Car Driving License</li>
                                 <li>Military Exemption</li>
                             </ul>
@@ -344,7 +343,6 @@
                     <!-- Certificate 2: Microsoft -->
                     <div class="cert-card">
                         <div class="cert-image-container">
-                            <!-- UPDATED AND CORRECTED IMAGE LINK -->
                             <img src="https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-fundamentals-badge.svg" alt="Microsoft Certified Azure Fundamentals Badge" class="cert-image">
                         </div>
                         <div class="cert-text-container">
@@ -355,7 +353,6 @@
 
                     <!-- Certificate 3: KBTG -->
                     <div class="cert-card">
-                        <!-- UPDATED IMAGE -->
                         <div class="cert-image-container" style="background-color: #ffffff;">
                             <img src="https://kbtgkampus.tech/logo512.png" alt="KBTG Kampus Logo" class="cert-image h-32 w-32">
                         </div>
@@ -382,21 +379,27 @@
 
     <!-- View Count Script -->
     <script>
+        // *** IMPORTANT ***
+        // PASTE YOUR NEW LAMBDA URL (from Terraform output) HERE
         const functionUrl = "https://syxsbgvvfhjli6navxhyqloddm0cnivx.lambda-url.ap-southeast-2.on.aws/";
       
         async function fetchViewCount() {
           try {
+            // 1. Call the API
             const response = await fetch(functionUrl);
+            // 2. Get the JSON data from the response
             const data = await response.json();
+            // 3. Find the element with id="viewCount" and update its text
             document.getElementById("viewCount").innerText = data.views;
           } catch (error) {
+            // If anything fails, log it and show "Error"
             console.log(error)
             console.error("Error fetching view count:", error);
             document.getElementById("viewCount").innerText = "Error";
           }
         }
-        
-        // Run view count fetch but don't wait for it
+      
+        // Run view count fetch
         fetchViewCount();
     </script>
 
@@ -431,9 +434,6 @@
         // Add click event listeners
         resumeTab.addEventListener('click', showResumePage);
         certificatesTab.addEventListener('click', showCertificatesPage);
-
-        // No need for window.onload, just run
-        showResumePage(); // Show resume by default
     </script>
 </body>
 </html>

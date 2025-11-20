@@ -2,6 +2,7 @@ Ignore Terraform files
 
 **/.terraform/
 **/.terraform.lock.hcl
+*.tfvars
 *.tfstate
 .tfstate.
 

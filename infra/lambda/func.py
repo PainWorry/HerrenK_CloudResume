@@ -5,8 +5,6 @@ import os
 def lambda_handler(event, context):
     
     # Connection logic MUST be inside the handler.
-    # This ensures it runs *after* test fixtures set the env vars
-    # and handles Lambda's cold start behavior correctly.
     table_name = os.environ.get('TABLE_NAME', 'cloud-resume-views')
     region = os.environ.get('AWS_REGION') or os.environ.get('AWS_DEFAULT_REGION') or 'ap-southeast-2'
     
@@ -31,7 +29,7 @@ def lambda_handler(event, context):
         
         view_count = response['Attributes']['views']
         
-        # Return a successful, CORS-enabled response
+        # --- โค้ดที่เปลี่ยนไป: เพิ่ม 'message' เข้าไปใน JSON ---
         return {
             'statusCode': 200,
             'headers': {
@@ -39,7 +37,10 @@ def lambda_handler(event, context):
                 'Access-Control-Allow-Headers': 'Content-Type',
                 'Access-Control-Allow-Methods': 'GET'
             },
-            'body': json.dumps({'views': str(view_count)})
+            'body': json.dumps({
+                'views': str(view_count), 
+                'message': 'Hello from HerrenK Lambda!' # เพิ่ม message เข้าไป
+            })
         }
     
     except Exception as e:

@@ -7,10 +7,8 @@ terraform {
   }
 }
 
-# Configure the AWS Provider
 provider "aws" {
-  # This will use your default AWS CLI profile.
-  # If you use a named profile, change "default".
-  profile = "default"
-  region  = "ap-southeast-2" # Your region
+  region     = var.aws_region
+  access_key = var.aws_access_key
+  secret_key = var.aws_secret_key
 }
